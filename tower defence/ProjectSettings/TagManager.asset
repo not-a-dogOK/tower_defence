@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: backround
+    uniqueID: 447083465
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: player
+    uniqueID: 266478013
+    locked: 0
+  - name: UI
+    uniqueID: 811599277
     locked: 0
