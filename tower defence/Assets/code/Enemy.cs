@@ -6,9 +6,11 @@ public class Enemy : MonoBehaviour {
 
 	private Transform target;
 	private int wavepointIndex = 0;
+	
 
 	void Start ()
 	{
+		transform.position = transform.position + Vector3.right * spawningRandom();
 		target = Waypoints.points[0];
 	}
 
@@ -22,7 +24,11 @@ public class Enemy : MonoBehaviour {
 			GetNextWaypoint();
 		}
 	}
-
+	float spawningRandom()
+	{
+		float r = Random.Range(-1.0f, 1.0f);
+		return r;
+	}
 	void GetNextWaypoint()
 	{
 		if (wavepointIndex >= Waypoints.points.Length - 1)
