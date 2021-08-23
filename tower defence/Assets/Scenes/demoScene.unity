@@ -319,14 +319,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - name: 1
+  - name: chose
     enemy: {fileID: 6244339346306389130, guid: e28a0c6f43750a8418e0d321b41b5f3a, type: 3}
     count: 20
-    rate: 5
+    rate: 3
+  - name: 1
+    enemy: {fileID: 6244339346306389130, guid: e28a0c6f43750a8418e0d321b41b5f3a, type: 3}
+    count: 3
+    rate: 1
   - name: 2
     enemy: {fileID: 6244339346306389130, guid: e28a0c6f43750a8418e0d321b41b5f3a, type: 3}
     count: 5
     rate: 1
+  - name: 3
+    enemy: {fileID: 6244339346306389130, guid: e28a0c6f43750a8418e0d321b41b5f3a, type: 3}
+    count: 8
+    rate: 2
   spawnPoint: {fileID: 1342608969}
   timeBetweenWaves: 5
 --- !u!4 &474071884

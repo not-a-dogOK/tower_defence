@@ -14,12 +14,16 @@ public class WaveSpawner : MonoBehaviour {
 		public float rate;
 	}
 
+
+
 	public Wave[] waves;
-	private int nextWave = 0;
+	
+	private int nextWave = 1;
 	public int NextWave
 	{
 		get { return nextWave + 1; }
 	}
+
 
 	public Transform spawnPoint;
 
@@ -38,9 +42,11 @@ public class WaveSpawner : MonoBehaviour {
 		get { return state; }
 	}
 
+	private int tem_nextWave = 0;
+
+
 	void Start()
-	{
-		
+	{	
 		waveCountdown = timeBetweenWaves;
 	}
 
@@ -67,8 +73,24 @@ public class WaveSpawner : MonoBehaviour {
 		}
 		else
 		{
-			waveCountdown -= Time.deltaTime;
+			waveCountdown = waveCountdown - Time.deltaTime;
 		}
+		if (nextWave >= 3)
+        {
+
+			//RNG
+			/*
+			if ( 1 == Random.Range(0, 100));
+			{
+				Debug.Log("chose");
+				tem_nextWave = nextWave;
+				nextWave = 0;
+			}
+			*/
+		}
+
+
+
 	}
 
 	void WaveCompleted()
@@ -82,7 +104,7 @@ public class WaveSpawner : MonoBehaviour {
 		{
 
 			//to do load next level here
-			nextWave = 0;
+			nextWave = 1;
 			Debug.Log("ALL WAVES COMPLETE! Looping...");
 		}
 		else
@@ -107,6 +129,12 @@ public class WaveSpawner : MonoBehaviour {
 
 	IEnumerator SpawnWave(Wave _wave)
 	{
+		if(tem_nextWave >= nextWave)
+        {
+			nextWave = tem_nextWave;
+		}
+
+
 		Debug.Log("Spawning Wave: " + _wave.name);
 		state = SpawnState.SPAWNING;
 
@@ -130,6 +158,7 @@ public class WaveSpawner : MonoBehaviour {
 		Transform _sp = spawnPoint;
 		Instantiate(_enemy, _sp.position, _sp.rotation);
 	}
+	
 	// dead code :(
 
 	/*
