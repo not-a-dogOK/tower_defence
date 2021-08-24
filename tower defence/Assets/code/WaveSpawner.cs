@@ -14,12 +14,16 @@ public class WaveSpawner : MonoBehaviour {
 		public float rate;
 	}
 
+
+
 	public Wave[] waves;
-	private int nextWave = 0;
+	
+	public int nextWave = 1;
 	public int NextWave
 	{
 		get { return nextWave + 1; }
 	}
+
 
 	public Transform spawnPoint;
 
@@ -32,20 +36,24 @@ public class WaveSpawner : MonoBehaviour {
 
 	private float searchCountdown = 1f;
 
+
 	private SpawnState state = SpawnState.COUNTING;
 	public SpawnState State
 	{
 		get { return state; }
 	}
 
+
+	// set the function chose to run every 10 sec
 	void Start()
-	{
-		
+	{	
 		waveCountdown = timeBetweenWaves;
+		InvokeRepeating("Chose",1f,10f);
 	}
 
 	void Update()
 	{
+		//checks if enemy is alive if not runs wave complte 
 		if (state == SpawnState.WAITING)
 		{
 			if (!EnemyIsAlive())
@@ -57,6 +65,7 @@ public class WaveSpawner : MonoBehaviour {
 				return;
 			}
 		}
+		// when the countdown ends spawn next wave
 
 		if (waveCountdown <= 0)
 		{
@@ -67,11 +76,31 @@ public class WaveSpawner : MonoBehaviour {
 		}
 		else
 		{
-			waveCountdown -= Time.deltaTime;
+			waveCountdown = waveCountdown - Time.deltaTime;
 		}
+
+
 	}
 
-	void WaveCompleted()
+	// makes the chose wave spwan randomly
+		void Chose()
+	{
+		
+
+
+		//RNG
+		int i = Random.Range(0, 100);
+		if ( 75 <= i )
+		{
+
+			StartCoroutine(SpawnWave(waves[0]));
+		}
+		
+	}
+
+
+	//add 1 to next wave 
+void WaveCompleted()
 	{
 		Debug.Log("Wave Completed!");
 
@@ -81,8 +110,8 @@ public class WaveSpawner : MonoBehaviour {
 		if (nextWave + 1 > waves.Length - 1)
 		{
 
-			//to do load next level here
-			nextWave = 0;
+			//to do: load next level here
+			nextWave = 1;
 			Debug.Log("ALL WAVES COMPLETE! Looping...");
 		}
 		else
@@ -104,9 +133,11 @@ public class WaveSpawner : MonoBehaviour {
 		}
 		return true;
 	}
-
+	// spwan wave using the wave list 
 	IEnumerator SpawnWave(Wave _wave)
 	{
+		
+
 		Debug.Log("Spawning Wave: " + _wave.name);
 		state = SpawnState.SPAWNING;
 
@@ -115,7 +146,17 @@ public class WaveSpawner : MonoBehaviour {
 			SpawnEnemy(_wave.enemy);
 			yield return new WaitForSeconds( 1f/_wave.rate );
 		}
+		
 
+		//some dead code
+		/*
+		if(_wave.name = chose)
+        {
+
+        }
+		*/
+			
+			
 		state = SpawnState.WAITING;
 
 		yield break;
@@ -130,6 +171,7 @@ public class WaveSpawner : MonoBehaviour {
 		Transform _sp = spawnPoint;
 		Instantiate(_enemy, _sp.position, _sp.rotation);
 	}
+	
 	// dead code :(
 
 	/*
