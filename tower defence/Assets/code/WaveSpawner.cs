@@ -44,7 +44,7 @@ public class WaveSpawner : MonoBehaviour {
 	}
 
 
-
+	// set the function chose to run every 10 sec
 	void Start()
 	{	
 		waveCountdown = timeBetweenWaves;
@@ -53,6 +53,7 @@ public class WaveSpawner : MonoBehaviour {
 
 	void Update()
 	{
+		//checks if enemy is alive if not runs wave complte 
 		if (state == SpawnState.WAITING)
 		{
 			if (!EnemyIsAlive())
@@ -64,6 +65,7 @@ public class WaveSpawner : MonoBehaviour {
 				return;
 			}
 		}
+		// when the countdown ends spawn next wave
 
 		if (waveCountdown <= 0)
 		{
@@ -80,6 +82,7 @@ public class WaveSpawner : MonoBehaviour {
 
 	}
 
+	// makes the chose wave spwan randomly
 		void Chose()
 	{
 		
@@ -95,6 +98,8 @@ public class WaveSpawner : MonoBehaviour {
 		
 	}
 
+
+	//add 1 to next wave 
 void WaveCompleted()
 	{
 		Debug.Log("Wave Completed!");
@@ -105,7 +110,7 @@ void WaveCompleted()
 		if (nextWave + 1 > waves.Length - 1)
 		{
 
-			//to do load next level here
+			//to do: load next level here
 			nextWave = 1;
 			Debug.Log("ALL WAVES COMPLETE! Looping...");
 		}
@@ -128,7 +133,7 @@ void WaveCompleted()
 		}
 		return true;
 	}
-
+	// spwan wave using the wave list 
 	IEnumerator SpawnWave(Wave _wave)
 	{
 		
@@ -142,6 +147,8 @@ void WaveCompleted()
 			yield return new WaitForSeconds( 1f/_wave.rate );
 		}
 		
+
+		//some dead code
 		/*
 		if(_wave.name = chose)
         {
