@@ -18,7 +18,7 @@ public class WaveSpawner : MonoBehaviour {
 
 	public Wave[] waves;
 	
-	public int nextWave = 1;
+	public int nextWave = 2;
 	public int NextWave
 	{
 		get { return nextWave + 1; }
@@ -97,6 +97,11 @@ public class WaveSpawner : MonoBehaviour {
 		}
 		
 	}
+	void vromVrom()
+    {
+		StartCoroutine(SpawnWave(waves[1]));
+	}
+
 
 
 	//add 1 to next wave 
@@ -111,7 +116,7 @@ void WaveCompleted()
 		{
 
 			//to do: load next level here
-			nextWave = 1;
+			nextWave = 2;
 			Debug.Log("ALL WAVES COMPLETE! Looping...");
 		}
 		else
@@ -167,11 +172,19 @@ void WaveCompleted()
 		Debug.Log("Spawning Enemy: " + _enemy.name);
 
 		//Transform _sp = spawnPoints[ Random.Range (0, spawnPoints.Length) ];
-
 		Transform _sp = spawnPoint;
 		Instantiate(_enemy, _sp.position, _sp.rotation);
 	}
-	
+
+	public static void SpawnEnemytruck(Transform _enemy, Transform truck)
+	{
+		Debug.Log("Spawning Enemy from truck: " + _enemy.name);
+
+		//Transform _sp = spawnPoints[ Random.Range (0, spawnPoints.Length) ];
+		Transform _sp = truck;
+		Instantiate(_enemy, _sp.position, _sp.rotation);
+	}
+
 	// dead code :(
 
 	/*

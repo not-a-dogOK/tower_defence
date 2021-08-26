@@ -6,7 +6,15 @@ public class Enemy : MonoBehaviour {
 
 	private Transform target;
 	private int wavepointIndex = 0;
-	
+
+	/*
+	public static void SetwavepointIndex(int wavepointIndexIN)
+    {
+		wavepointIndex = wavepointIndexIN;
+
+	}
+	*/
+
 
 	void Start ()
 	{
@@ -40,5 +48,7 @@ public class Enemy : MonoBehaviour {
 		wavepointIndex++;
 		target = Waypoints.points[wavepointIndex];
 	}
+
+
 
 }
