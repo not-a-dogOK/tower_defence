@@ -5565,8 +5565,8 @@ MonoBehaviour:
     rate: 1
   - name: 1
     enemy: {fileID: 6244339346306389130, guid: e28a0c6f43750a8418e0d321b41b5f3a, type: 3}
-    count: 1
-    rate: 1
+    count: 10
+    rate: 3
   - name: 2
     enemy: {fileID: 6244339346306389130, guid: e28a0c6f43750a8418e0d321b41b5f3a, type: 3}
     count: 2
@@ -5575,7 +5575,7 @@ MonoBehaviour:
     enemy: {fileID: 6244339346306389130, guid: e28a0c6f43750a8418e0d321b41b5f3a, type: 3}
     count: 3
     rate: 1
-  nextWave: 1
+  nextWave: 2
   spawnPoint: {fileID: 1342608969}
   timeBetweenWaves: 5
 --- !u!4 &474071884

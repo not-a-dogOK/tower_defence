@@ -57,11 +57,20 @@ public class Turret : MonoBehaviour {
 			return;
 
 		//Target lock on
-		Vector3 dir = target.position - transform.position;
-		Quaternion lookRotation = Quaternion.LookRotation(dir);
-		Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-		partToRotate.rotation = Quaternion.Euler (0f, 0f, rotation.z);
-
+		if ( target.position.x > transform.position.x )
+		{
+			Vector3 dir = target.position - transform.position;
+			Quaternion lookRotation = Quaternion.LookRotation(dir);
+			Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+			partToRotate.rotation = Quaternion.Euler(0f, 0f, rotation.z);
+        }
+        if(target.position.x < transform.position.x )
+        {
+			Vector3 dir = target.position - transform.position;
+			Quaternion lookRotation = Quaternion.LookRotation(dir);
+			Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+			partToRotate.rotation = Quaternion.Euler(0f, 0f, -rotation.z);
+		}
 		if (fireCountdown <= 0f)
 		{
 			Shoot();
