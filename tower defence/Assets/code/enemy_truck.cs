@@ -5,6 +5,7 @@ public class enemy_truck : MonoBehaviour
 
 	public float speed = 10f;
 	public Transform Enemy_Transform;
+	public int killmoney = 20;
 	//public GameObject enemy;
 
 	private Transform target;
@@ -48,6 +49,8 @@ public class enemy_truck : MonoBehaviour
 	
 	void OnDestroy()
 	{
+
+		PlayerStats.Money = PlayerStats.Money + killmoney;
 		int num = 0;
 		while (num < 10)
 			{

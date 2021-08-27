@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  killmoney: 20
+  impactEffect: {fileID: 156114, guid: 6c57be7000b5ee043885cfc7b8f700f2, type: 3}
 --- !u!95 &6244339346306389129
 Animator:
   serializedVersion: 3

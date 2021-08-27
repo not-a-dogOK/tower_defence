@@ -14,13 +14,15 @@ public class BuildManager : MonoBehaviour {
 		instance = this;
 	}
 	public GameObject sniperprefab;
-	public GameObject standardTurretPrefab;
-	private GameObject doulGunprefab;
+	public GameObject dualGunprefab;
+	public static GameObject SelectedTurret;
+	public static int cost;
+	public int sniperCost = 250;
+	public int dualCost = 200;
 
 	void Start ()
 	{
-		doulGunprefab = standardTurretPrefab;
-		turretToBuild = standardTurretPrefab;
+		turretToBuild = dualGunprefab;
 	}
 
 	private GameObject turretToBuild;
@@ -31,14 +33,18 @@ public class BuildManager : MonoBehaviour {
 	}
 	public void selectSniper()
     {
-		standardTurretPrefab = sniperprefab;
-		turretToBuild = standardTurretPrefab;
+		SelectedTurret = sniperprefab;
+		turretToBuild = sniperprefab;
+		cost = sniperCost;
+	
 	}
 
 	public void selectDual()
 	{
-		standardTurretPrefab = doulGunprefab;
-		turretToBuild = standardTurretPrefab;
+		SelectedTurret = dualGunprefab;
+		turretToBuild = dualGunprefab;
+			cost = dualCost;
+		
 	}
 
 

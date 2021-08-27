@@ -21,9 +21,24 @@ public class Node : MonoBehaviour {
 			Debug.Log("Can't build there! - TODO: Display on screen.");
 			return;
 		}
-
+		
 		GameObject turretToBuild = BuildManager.instance.GetTurretToBuild();
-		turret = (GameObject)Instantiate(turretToBuild, transform.position + positionOffset, transform.rotation);
+
+
+		if (turretToBuild == BuildManager.SelectedTurret && PlayerStats.Money >= BuildManager.cost)
+        {
+			turret = (GameObject)Instantiate(turretToBuild, transform.position + positionOffset, transform.rotation);
+			PlayerStats.Money = PlayerStats.Money - BuildManager.cost;
+		}
+        else
+        {
+			Debug.Log("u poor");
+        }
+       
+			
+			
+			
+			
 	}
 
 

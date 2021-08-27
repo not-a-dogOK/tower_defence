@@ -3,9 +3,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
 	public float speed = 10f;
+	public int killmoney = 20;
+	private static int health;
+	public int Starthealth = 2;
 
 	private Transform target;
 	private int wavepointIndex = 0;
+
+	public GameObject impactEffect;
 
 	/*
 	public static void SetwavepointIndex(int wavepointIndexIN)
@@ -18,8 +23,11 @@ public class Enemy : MonoBehaviour {
 
 	void Start ()
 	{
+		health = Starthealth;
+
 		transform.position = transform.position + Vector3.right * spawningRandom();
 		target = Waypoints.points[0];
+
 	}
 
 	void Update ()
@@ -31,8 +39,16 @@ public class Enemy : MonoBehaviour {
 		{
 			GetNextWaypoint();
 		}
+
 	}
-	float spawningRandom()
+	/*
+	public static void BeenHit()
+	{
+		health--;
+		
+	}
+	*/
+    float spawningRandom()
 	{
 		float r = Random.Range(-1.0f, 1.0f);
 		return r;
@@ -41,12 +57,30 @@ public class Enemy : MonoBehaviour {
 	{
 		if (wavepointIndex >= Waypoints.points.Length - 1)
 		{
+			PlayerStats.Lives--;
+			if(PlayerStats.Lives >= 0)
+            {
+				Debug.Log("game over");
+
+            }
 			Destroy(gameObject);
 			return;
 		}
 
 		wavepointIndex++;
 		target = Waypoints.points[wavepointIndex];
+	}
+
+	
+
+	void OnDestroy()
+    {
+		GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+		Destroy(effectIns, 2f);
+		
+
+		PlayerStats.Money = PlayerStats.Money + killmoney;
+
 	}
 
 
