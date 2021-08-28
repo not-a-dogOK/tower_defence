@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour {
 
 	public GameObject impactEffect;
 
+	
+
 	/*
 	public static void SetwavepointIndex(int wavepointIndexIN)
     {
@@ -28,6 +30,8 @@ public class Enemy : MonoBehaviour {
 		transform.position = transform.position + Vector3.right * spawningRandom();
 		target = Waypoints.points[0];
 
+
+		
 	}
 
 	void Update ()
@@ -58,11 +62,7 @@ public class Enemy : MonoBehaviour {
 		if (wavepointIndex >= Waypoints.points.Length - 1)
 		{
 			PlayerStats.Lives--;
-			if(PlayerStats.Lives >= 0)
-            {
-				Debug.Log("game over");
-
-            }
+			
 			Destroy(gameObject);
 			return;
 		}

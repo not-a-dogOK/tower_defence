@@ -36,6 +36,9 @@ public class WaveSpawner : MonoBehaviour {
 
 	private float searchCountdown = 1f;
 
+	public GameObject backTomenu;
+	public AudioSource DoneSound;
+
 
 	private SpawnState state = SpawnState.COUNTING;
 	public SpawnState State
@@ -49,6 +52,7 @@ public class WaveSpawner : MonoBehaviour {
 	{	
 		waveCountdown = timeBetweenWaves;
 		InvokeRepeating("Chose",1f,10f);
+		backTomenu.SetActive(false);
 	}
 
 	void Update()
@@ -85,18 +89,19 @@ public class WaveSpawner : MonoBehaviour {
 	// makes the chose wave spwan randomly
 		void Chose()
 	{
-		
+		if (nextWave >= 5)
+        {
+			//RNG
+			int i = Random.Range(0, 100);
+			if (75 <= i)
+			{
 
+				StartCoroutine(SpawnWave(waves[0]));
+			}
 
-		//RNG
-		int i = Random.Range(0, 100);
-		if ( 75 <= i )
-		{
-
-			StartCoroutine(SpawnWave(waves[0]));
 		}
-		
 	}
+
 	void vromVrom()
     {
 		StartCoroutine(SpawnWave(waves[1]));
@@ -115,9 +120,11 @@ void WaveCompleted()
 		if (nextWave + 1 > waves.Length - 1)
 		{
 
-			//to do: load next level here
+			backTomenu.SetActive(true);
+			DoneSound.Play();
 			nextWave = 2;
 			Debug.Log("ALL WAVES COMPLETE! Looping...");
+			
 		}
 		else
 		{
@@ -169,7 +176,7 @@ void WaveCompleted()
 
 	void SpawnEnemy(Transform _enemy)
 	{
-		Debug.Log("Spawning Enemy: " + _enemy.name);
+		//Debug.Log("Spawning Enemy: " + _enemy.name);
 
 		//Transform _sp = spawnPoints[ Random.Range (0, spawnPoints.Length) ];
 		Transform _sp = spawnPoint;
@@ -178,7 +185,7 @@ void WaveCompleted()
 
 	public static void SpawnEnemytruck(Transform _enemy, Transform truck)
 	{
-		Debug.Log("Spawning Enemy from truck: " + _enemy.name);
+		//Debug.Log("Spawning Enemy from truck: " + _enemy.name);
 
 		//Transform _sp = spawnPoints[ Random.Range (0, spawnPoints.Length) ];
 		Transform _sp = truck;

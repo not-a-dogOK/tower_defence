@@ -21,6 +21,17 @@ public class Turret : MonoBehaviour {
 	public GameObject bulletPrefab;
 	public Transform firePoint;
 
+	[Header("UI")]
+
+	public SpriteRenderer spriteRenderer;
+	public Sprite left;
+	public Sprite right;
+
+	[Header("Sound")]
+	public AudioSource ShotSound;
+
+
+
 	// Use this for initialization
 	void Start () {
 		InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -59,18 +70,18 @@ public class Turret : MonoBehaviour {
 		//Target lock on
 		if ( target.position.x > transform.position.x )
 		{
-			Vector3 dir = target.position - transform.position;
-			Quaternion lookRotation = Quaternion.LookRotation(dir);
-			Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-			partToRotate.rotation = Quaternion.Euler(0f, 0f, rotation.z);
-        }
+			spriteRenderer.sprite = right;
+		}
         if(target.position.x < transform.position.x )
         {
-			Vector3 dir = target.position - transform.position;
-			Quaternion lookRotation = Quaternion.LookRotation(dir);
-			Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-			partToRotate.rotation = Quaternion.Euler(0f, 0f, -rotation.z);
+			spriteRenderer.sprite = left;
 		}
+		
+		Vector3 dir = target.position - transform.position;
+		Quaternion lookRotation = Quaternion.LookRotation(dir);
+		Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+		partToRotate.rotation = Quaternion.Euler(0f, 0f, rotation.z);
+		
 		if (fireCountdown <= 0f)
 		{
 			Shoot();
@@ -87,7 +98,12 @@ public class Turret : MonoBehaviour {
 		Bullet bullet = bulletGO.GetComponent<Bullet>();
 
 		if (bullet != null)
+        {
 			bullet.Seek(target);
+		}
+
+		ShotSound.Play();
+
 	}
 
 	void OnDrawGizmosSelected ()

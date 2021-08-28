@@ -58,7 +58,7 @@ public class enemy_truck : MonoBehaviour
 				,
 				transform);
 
-			print("Script was destroyed");
+			//print("Script was destroyed");
 			num++;	
 		}
 			//Enemy.SetwavepointIndex(wavepointIndex);

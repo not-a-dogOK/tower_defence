@@ -98,7 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   killmoney: 20
+  Starthealth: 2
   impactEffect: {fileID: 156114, guid: 6c57be7000b5ee043885cfc7b8f700f2, type: 3}
+  GameOver: {fileID: 7420470258422407348, guid: 28d569f04f42ae74dbb3ae419f1de08d, type: 3}
 --- !u!95 &6244339346306389129
 Animator:
   serializedVersion: 3
