@@ -18,4 +18,6 @@ THE FILES HERE ARE ONLY TO OPEN USING THE UNITY ENGINE!
 
 to get the game go to
 
-you may do want u please with the sorce code here or any of the art just credit me with a link to my github page
+you may do want u please with the sorce code here or any art here just credit me with a link to my github page
+
+music and sound effects from: https://www.chosic.com 
