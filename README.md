@@ -1,13 +1,12 @@
 # tower_defence
  tower defense game where you defend a city from wave of chaotic monsters
  
- DO NOT DOWNLOAD THE GAME FILES FROM HERE TO PLAY!
-
-THE FILES HERE ARE ONLY TO OPEN USING THE UNITY ENGINE!
-
-to get the game go to https://not-a-dogok.itch.io/chaostower
+**IMPORTANT**
+those are the engine unity files 
+so the files here can only be open using the unity engine
+if you with to play the game check the releces here or the itch page
+https://not-a-dogok.itch.io/chaostower
  
- you may do want u please with the sorce code here or any of the art just credit me with a link to my
- github page
- 
+**Licence**
 music and sound effects from: https://www.chosic.com 
+
