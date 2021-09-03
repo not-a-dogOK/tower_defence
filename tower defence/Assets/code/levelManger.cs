@@ -19,7 +19,7 @@ public class levelManger : MonoBehaviour
     {
         LoadSenceByIndex(0);
     }
-    
+
     public void loadLevel2()
     {
         LoadSenceByIndex(2);
