@@ -5,7 +5,7 @@
 
 those are the engine unity files 
 so the files can only be open using the unity engine
-if you with to play the game check the releases here or the itch.io page
+if you wish to play the game check the releases here or the itch.io page
 https://not-a-dogok.itch.io/chaostower
  
 **Licence**
