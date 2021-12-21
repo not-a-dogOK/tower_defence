@@ -1,38 +1,54 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
+using System.Collections;
 
 public class levelManger : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject loadingScreen;
+    public GameObject gameUI;
+    public Slider loadbar;
+
+
+    void start()
+    {
+        loadingScreen.SetActive(false);
+        gameUI.SetActive(true);
+    }
+
     public void LoadNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        int index = SceneManager.GetActiveScene().buildIndex;
+        LoadAsyncScene(index + 1);
+        
+        //SceneManager.LoadScene(
     }
-    public void LoadSenceByIndex(int index)
-    {
-        SceneManager.LoadScene(index);
-    }
+   
 
 
     public void BackToMenu()
     {
-        LoadSenceByIndex(0);
+        Debug.Log("menu pressed");
+        StartCoroutine(LoadAsyncScene(0));
     }
 
     public void loadLevel2()
     {
-        LoadSenceByIndex(2);
+        Debug.Log("2 pressed");
+        StartCoroutine(LoadAsyncScene(2));
+        
     }
 
     public void loadLevel3()
     {
-        LoadSenceByIndex(3);
+        Debug.Log("3 pressed");
+        LoadAsyncScene(3);
     }
 
     public void loadLevel4()
     {
-        LoadSenceByIndex(4);
+        Debug.Log("4 pressed");
+        LoadAsyncScene(4);
     }
 
 
@@ -44,4 +60,32 @@ public class levelManger : MonoBehaviour
         }
     }
 
+    public IEnumerator LoadAsyncScene(int buildindex)
+    {
+        gameUI.SetActive(false);
+        loadingScreen.SetActive(true);
+        Debug.Log("started LoadAsyncScene()");
+
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(buildindex);
+        asyncLoad.allowSceneActivation = false;
+
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            float progress = Mathf.Clamp01(asyncLoad.progress / .9f);
+            loadbar.value = progress;
+            yield return null; //wait untill the next frame
+            
+            Debug.Log("Press a key to start");
+            if (Input.anyKey)
+            {
+                asyncLoad.allowSceneActivation = true;
+            }
+            
+        }
+        yield return null;
+    }
+
 }
+
