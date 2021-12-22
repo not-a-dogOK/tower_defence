@@ -8,20 +8,22 @@ public class levelManger : MonoBehaviour
     public GameObject loadingScreen;
     public GameObject gameUI;
     public Slider loadbar;
+    public GameObject PressKeyToStartText;
 
 
     void start()
     {
         loadingScreen.SetActive(false);
         gameUI.SetActive(true);
+        PressKeyToStartText.SetActive(false);
     }
 
     public void LoadNextLevel()
     {
         int index = SceneManager.GetActiveScene().buildIndex;
-        LoadAsyncScene(index + 1);
+        StartCoroutine(LoadAsyncScene(index + 1));
         
-        //SceneManager.LoadScene(
+        
     }
    
 
@@ -77,13 +79,15 @@ public class levelManger : MonoBehaviour
             loadbar.value = progress;
             yield return null; //wait untill the next frame
             
-            Debug.Log("Press a key to start");
+            PressKeyToStartText.SetActive(true);
             if (Input.anyKey)
             {
                 asyncLoad.allowSceneActivation = true;
             }
-            
+
         }
+        
+        
         yield return null;
     }
 
