@@ -64,7 +64,7 @@ public class WaveSpawner : MonoBehaviour
     void Update()
     {
 
-        WaveText.text = "wave: " + nextWaveDesplay + "/10";
+        WaveText.text = "wave: " + nextWaveDesplay + "/12";
 
         //checks if enemy is alive if not runs wave complte 
         if (state == SpawnState.WAITING)
